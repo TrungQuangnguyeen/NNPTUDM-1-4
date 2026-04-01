@@ -1,0 +1,140 @@
+{
+  "info": {
+    "_postman_id": "messaging-api-collection",
+    "name": "Messaging API",
+    "description": "Collection for testing Message routes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Messages with User",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "user-id",
+            "value": "507f1f77bcf86cd799439011",
+            "type": "text",
+            "description": "Current user ID"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/messages/507f1f77bcf86cd799439012",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "messages", "507f1f77bcf86cd799439012"]
+        },
+        "description": "GET /:userID\nLấy toàn bộ message giữa user hiện tại và userID (cả 2 chiều)"
+      },
+      "response": []
+    },
+    {
+      "name": "Post Text Message",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "user-id",
+            "value": "507f1f77bcf86cd799439011",
+            "type": "text",
+            "description": "Current user ID"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"to\": \"507f1f77bcf86cd799439012\",\n  \"type\": \"text\",\n  \"text\": \"Hello, this is a test message\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/messages",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "messages"]
+        },
+        "description": "POST /\nGửi text message new"
+      },
+      "response": []
+    },
+    {
+      "name": "Post File Message",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "user-id",
+            "value": "507f1f77bcf86cd799439011",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "to",
+              "value": "507f1f77bcf86cd799439012",
+              "type": "text"
+            },
+            {
+              "key": "type",
+              "value": "file",
+              "type": "text"
+            },
+            {
+              "key": "file",
+              "type": "file",
+              "src": []
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/messages",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "messages"]
+        },
+        "description": "POST /\nGửi file message (chọn file trong form-data)"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Last Message from Each User",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "user-id",
+            "value": "507f1f77bcf86cd799439011",
+            "type": "text",
+            "description": "Current user ID"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/messages",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "messages"]
+        },
+        "description": "GET /\nLấy message cuối cùng từ mỗi user mà user hiện tại có liên hệ"
+      },
+      "response": []
+    }
+  ]
+}
